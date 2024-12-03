@@ -24,9 +24,9 @@ const TodoInput = ({ addTodo }) => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="오늘 해야하는 일을 등록해 주세요🙌"
+            placeholder="해야할 일을 입력하세요!"
         />
-        <button onClick={handleAdd}>할 일 등록</button>
+        <button onClick={handleAdd}>추가</button>
         </div>
     );
 };
