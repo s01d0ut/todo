@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react';
+import TodoInput from './component/todoinput';
+import TodoList from './component/todolist';
 
 function App() {
-  const [count, setCount] = useState(0)
+  // todos 상태 정의
+  const [todos, setTodos] = useState(() => {
+    // 초기 상태 설정 시 로컬 스토리지에서 불러오기
+    const savedTodos = localStorage.getItem("todos");
+    return savedTodos ? JSON.parse(savedTodos) : [];
+  });
+
+  // todos가 변경될 때마다 로컬 스토리지에 저장
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  /**
+   * C 생성하기 - todo 등록
+   * @param {*} text todo의 내용
+   */
+  const addTodo = (text) => {
+    setTodos([
+      ...todos,
+      {
+        id: Date.now(),
+        text,
+        completed: false,
+      },
+    ]);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>React To-Do List</h1>
+      <TodoInput addTodo={addTodo} />
+      <TodoList todos={todos} />
+    </div>
+  );
 }
 
-export default App
+export default App;
