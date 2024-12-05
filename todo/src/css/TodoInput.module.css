@@ -3,10 +3,19 @@
     display: flex;
     gap: 10px;
 }
+
 .todoInput {
     height: 40px;
-    border-radius: 4px;
     padding: 8px 12px;
     flex: 1;
+    border: none;
+    border-bottom: 2px solid #ddd;
+}
+
+  /* 마감일 입력 필드를 위한 스타일 */
+.todoDateInput {
+    height: 40px;
+    padding: 8px 12px;
     border: 1px solid #ddd;
+    border-radius: 4px;
 }
