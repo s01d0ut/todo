@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://s01d0ut.github.io/todo/todo",
+  "homepage": "https://s01d0ut.github.io/todo",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
